@@ -1,0 +1,28 @@
+.note-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.note-input {
+  width: 350px;
+  background-color: #f7fcfa;
+  padding: 14px 32px 14px 16px;
+  border-radius: 8px;
+  border-style: ridge;
+  font-size: 15px;
+  border-color: #087d7f;
+}
+
+.note-button {
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  color: whitesmoke;
+  background-color: #087d7f;
+  border: none;
+  outline: none;
+  margin: 9px;
+}
