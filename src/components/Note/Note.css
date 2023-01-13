@@ -26,3 +26,8 @@
   width: 20px;
   height: 20px;
 }
+
+.note-container.done {
+  text-decoration: line-through;
+  background-color: #ee9b00;
+}
