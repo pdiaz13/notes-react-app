@@ -12,6 +12,7 @@
     "husky": "^8.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -21,7 +22,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write .",
-    "lint": "eslint --fix . --ext .js,.jsx"
+    "lint": "eslint --fix . --ext .js,.jsx",
+    "precommit": "npm run lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
   },
   "devDependencies": {
     "eslint": "^8.32.0",

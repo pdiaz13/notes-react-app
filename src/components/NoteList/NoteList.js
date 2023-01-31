@@ -4,23 +4,7 @@ import Form from '../Form/Form';
 import './NoteList.css';
 
 function NoteList() {
-	const [notes, setNotes] = useState([
-		{
-			text: 'pepe',
-			id: 1,
-			status: 'pending',
-		},
-		{
-			text: 'pepa',
-			id: 2,
-			status: 'done',
-		},
-		{
-			text: 'Hola',
-			id: 3,
-			status: 'pending',
-		},
-	]);
+	const [notes, setNotes] = useState([]);
 
 	// function to update the status of a note
 	const updateNoteStatus = (noteId, notes) => {

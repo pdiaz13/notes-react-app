@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Note from '../Note/Note';
 import './Form.css';
 
@@ -12,8 +12,15 @@ const Form = ({ setNotes, notes }) => {
 	};
 
 	// function to handle form submission
-	const handleSubmit = (e, inputValue) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
+		const newNote = {
+			text: inputValue,
+			id: notes.length + 1,
+			status: 'pending',
+		};
+		setNotes([...notes, newNote]);
+		setInputValue('');
 	};
 
 	return (
@@ -26,8 +33,10 @@ const Form = ({ setNotes, notes }) => {
 				onChange={handleChange}
 				value={inputValue}
 			/>
-			<button className='note-button'> Add Note</button>
-			<Note text={inputValue} id={Note.id} status={Note.status} />
+			<button className='note-button' onClick={handleSubmit}>
+				{' '}
+				Add Note
+			</button>
 		</form>
 	);
 };
