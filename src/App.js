@@ -1,5 +1,5 @@
 import logoNotes from './img/logoNotes.png';
-import NoteList from './components/NoteList/NoteList.js';
+import NoteList from './components/NoteList/NoteList';
 import './App.css';
 
 function App() {
