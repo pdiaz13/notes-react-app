@@ -31,3 +31,8 @@
 	text-decoration: line-through;
 	background-color: #ee9b00;
 }
+
+.note-container.done {
+  text-decoration: line-through;
+  background-color: #ee9b00;
+}
