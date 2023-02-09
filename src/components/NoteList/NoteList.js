@@ -29,8 +29,9 @@ function NoteList() {
 			<Form setNotes={setNotes} notes={notes} />
 			<div className='note-list-container'>
 				{notes.map((note) => (
-					<div key={note.id}>
+					<div className='note-list-map' key={note.id}>
 						<input
+							className='input-checkbox'
 							type='checkbox'
 							checked={note.status === 'done'}
 							onChange={() => toggleNoteStatus(note.id)}
