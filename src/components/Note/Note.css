@@ -31,7 +31,6 @@
 	text-decoration: line-through;
 	background-color: #ee9b00;
 }
-
 @media only screen and (max-width: 480px) {
 	.note-container {
 		width: 280px;
@@ -46,4 +45,4 @@
 		width: 18px;
 		height: 18px;
 	}
-}
+
