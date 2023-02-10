@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Note from '../Note/Note';
 import './Form.css';
 
 const Form = ({ setNotes, notes }) => {
