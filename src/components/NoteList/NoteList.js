@@ -23,7 +23,11 @@ function NoteList() {
 	const toggleNoteStatus = (noteId) => {
 		setNotes((prevNotes) => updateNoteStatus(noteId, prevNotes));
 	};
-
+	// function to delete notes(?)
+	const handleClick = (id) => {
+		const deleteNote = notes.filter((note) => note.id !== id);
+		setNotes(deleteNote);
+	};
 	return (
 		<div>
 			<Form setNotes={setNotes} notes={notes} />
@@ -36,7 +40,12 @@ function NoteList() {
 							checked={note.status === 'done'}
 							onChange={() => toggleNoteStatus(note.id)}
 						/>
-						<Note id={note.id} text={note.text} status={note.status} />
+						<Note
+							id={note.id}
+							text={note.text}
+							status={note.status}
+							handleClick={handleClick}
+						/>
 					</div>
 				))}
 			</div>
