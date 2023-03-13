@@ -2,5 +2,37 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin-top: 15px;
+	margin-top: 13px;
+	align-items: center;
+}
+
+.note-list-map {
+	display: flex;
+	justify-items: center;
+}
+
+.input-checkbox {
+	transform: scale(1.5);
+	margin-right: -23px;
+}
+
+@media (max-width: 576px) {
+	.note-list-container {
+		flex-direction: column;
+	}
+	.note-input {
+		width: 90%;
+		margin: 5px;
+	}
+
+	.note-button {
+		width: 40%;
+		margin: 5px;
+		font-size: 16px;
+	}
+
+	.note-list {
+		width: 90%;
+		padding: 10px;
+	}
 }

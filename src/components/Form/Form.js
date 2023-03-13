@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Note from '../Note/Note';
 import './Form.css';
 
 const Form = ({ setNotes, notes }) => {
@@ -14,6 +13,11 @@ const Form = ({ setNotes, notes }) => {
 	// function to handle form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		// check if input value is empty
+		if (inputValue.trim() === '') {
+			alert('Note must have a value!');
+			return;
+		}
 		const newNote = {
 			text: inputValue,
 			id: notes.length + 1,
@@ -28,13 +32,13 @@ const Form = ({ setNotes, notes }) => {
 			<input
 				className='note-input'
 				type='text'
+				autoComplete='off'
 				placeholder='write a note'
 				name='text'
 				onChange={handleChange}
 				value={inputValue}
 			/>
 			<button className='note-button' onClick={handleSubmit}>
-				{' '}
 				Add Note
 			</button>
 		</form>
