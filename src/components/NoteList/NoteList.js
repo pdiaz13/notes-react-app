@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Note from '../Note/Note';
 import Form from '../Form/Form';
 import './NoteList.css';
+import axios from 'axios';
 
 function NoteList() {
 	const [notes, setNotes] = useState([]);
@@ -18,6 +19,13 @@ function NoteList() {
 			return note;
 		});
 	};
+	// -----
+	useEffect(() => {
+		axios.get('http://localhost:3005/notes').then((response) => {
+			console.log(response.data);
+			setNotes(response.data);
+		});
+	}, []);
 
 	// function to toggle the status of a note
 	const toggleNoteStatus = (noteId) => {
