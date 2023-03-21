@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Form.css';
+import axios from 'axios';
 
 const Form = ({ setNotes, notes }) => {
 	// useState hook to keep track of the input value in the form
@@ -19,14 +20,21 @@ const Form = ({ setNotes, notes }) => {
 			return;
 		}
 		const newNote = {
-			text: inputValue,
 			id: notes.length + 1,
+			text: inputValue,
 			status: 'pending',
 		};
-		setNotes([...notes, newNote]);
-		setInputValue('');
+		axios
+			.post('http://localhost:3005/notes', newNote)
+			.then((response) => {
+				console.log(response.data);
+				setNotes([...notes, response.data]);
+				setInputValue('');
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
-
 	return (
 		<form className='note-form' onSubmit={(e) => handleSubmit(e, inputValue)}>
 			<input
