@@ -19,21 +19,25 @@ const Form = ({ setNotes, notes }) => {
 			alert('Note must have a value!');
 			return;
 		}
-		const newNote = {
-			id: notes.length + 1,
-			text: inputValue,
-			status: 'pending',
-		};
-		axios
-			.post('http://localhost:3005/notes', newNote)
-			.then((response) => {
+		async function addNotes() {
+			const newNote = {
+				id: notes.length + 1,
+				text: inputValue,
+				status: 'pending',
+			};
+			try {
+				const response = await axios.post(
+					'http://localhost:3005/notes',
+					newNote
+				);
 				console.log(response.data);
 				setNotes([...notes, response.data]);
 				setInputValue('');
-			})
-			.catch((error) => {
+			} catch (error) {
 				console.log(error);
-			});
+			}
+		}
+		addNotes();
 	};
 	return (
 		<form className='note-form' onSubmit={(e) => handleSubmit(e, inputValue)}>
