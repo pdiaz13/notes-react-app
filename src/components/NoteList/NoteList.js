@@ -78,6 +78,7 @@ function NoteList() {
 						<Note
 							id={note.id}
 							text={note.text}
+							date={note.date}
 							status={note.status}
 							handleClick={handleClick}
 						/>

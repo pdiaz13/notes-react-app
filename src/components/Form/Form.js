@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import './Form.css';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const Form = ({ setNotes, notes }) => {
 	// useState hook to keep track of the input value in the form
 	const [inputValue, setInputValue] = useState('');
+	const [selectedDate, setSelectedDate] = useState('');
 
 	// function to update the input value when user types into the input field
 	const handleChange = (e) => {
 		setInputValue(e.target.value);
+	};
+
+	// funtion to handle date change
+	const handleDateChange = (date) => {
+		setSelectedDate(date);
 	};
 
 	// function to handle form submission
@@ -24,6 +32,7 @@ const Form = ({ setNotes, notes }) => {
 				id: notes.length + 1,
 				text: inputValue,
 				status: 'pending',
+				date: selectedDate ? selectedDate.toLocaleDateString() : '',
 			};
 			try {
 				const response = await axios.post(
@@ -50,8 +59,15 @@ const Form = ({ setNotes, notes }) => {
 				onChange={handleChange}
 				value={inputValue}
 			/>
+			<DatePicker
+				selected={selectedDate}
+				onChange={handleDateChange}
+				dateFormat='dd/MM/yyyy'
+				placeholderText='select a date'
+				className='note-datepicker'
+			/>
 			<button className='note-button' onClick={handleSubmit}>
-				Add Note
+				Add
 			</button>
 		</form>
 	);
