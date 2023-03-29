@@ -22,6 +22,14 @@
 	overflow-wrap: anywhere;
 }
 
+.note-date {
+	margin:5px;
+	background-color: #e9edc9;
+	font-size: 14px;
+	color: #001219;
+	font-family: 'Roboto', sans-serif;
+}
+
 .note-icon {
 	width: 20px;
 	height: 20px;
@@ -31,6 +39,7 @@
 	text-decoration: line-through;
 	background-color: #ee9b00;
 }
+
 @media only screen and (max-width: 480px) {
 	.note-container {
 		width: 280px;
@@ -45,4 +54,4 @@
 		width: 18px;
 		height: 18px;
 	}
-
+}

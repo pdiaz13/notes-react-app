@@ -7,6 +7,15 @@ import axios from 'axios';
 function NoteList() {
 	const [notes, setNotes] = useState([]);
 
+	// send a get request to get notes from the server
+	useEffect(() => {
+		const fetchNotes = async () => {
+			const response = await axios.get('http://localhost:3005/notes');
+			setNotes(response.data);
+		};
+		fetchNotes();
+	}, []);
+
 	// function to update the status of a note
 	const updateNoteStatus = (noteId, notes) => {
 		return notes.map((note) => {
@@ -19,23 +28,41 @@ function NoteList() {
 			return note;
 		});
 	};
-	// -----
-	useEffect(() => {
-		axios.get('http://localhost:3005/notes').then((response) => {
-			console.log(response.data);
-			setNotes(response.data);
-		});
-	}, []);
 
 	// function to toggle the status of a note
 	const toggleNoteStatus = (noteId) => {
-		setNotes((prevNotes) => updateNoteStatus(noteId, prevNotes));
+		const updatedNotes = updateNoteStatus(noteId, notes);
+		setNotes(updatedNotes);
+
+		// send a put request to update the status on the server
+		async function updateNotes() {
+			const noteToUpdate = updatedNotes.find((note) => note.id === noteId);
+			try {
+				const response = await axios.put(
+					`http://localhost:3005/notes/${noteId}`,
+					noteToUpdate
+				);
+				console.log(response);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		updateNotes();
 	};
-	// function to delete notes(?)
-	const handleClick = (id) => {
-		const deleteNote = notes.filter((note) => note.id !== id);
-		setNotes(deleteNote);
+
+	// function to delete notes
+	const handleClick = async (id) => {
+		try {
+			await axios.delete(`http://localhost:3005/notes/${id}`);
+			// Filter the notes to exclude the one we have just deleted
+			const updatedNotes = notes.filter((note) => note.id !== id);
+			// Update status without the notes we deleted before
+			setNotes(updatedNotes);
+		} catch (error) {
+			console.error(error);
+		}
 	};
+
 	return (
 		<div>
 			<Form setNotes={setNotes} notes={notes} />
@@ -51,6 +78,7 @@ function NoteList() {
 						<Note
 							id={note.id}
 							text={note.text}
+							date={note.date}
 							status={note.status}
 							handleClick={handleClick}
 						/>
